@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:infinity_post_page/constants/app_strings.dart';
 import 'package:infinity_post_page/posts/constants/posts_constants.dart';
 import 'package:infinity_post_page/posts/models/posts_model.dart';
 import 'package:http/http.dart' as http;
@@ -9,11 +10,11 @@ class PostServices{
   Future<List<PostModel>> getPosts([int startIndex = 0]) async {
     final response = await httpClient.get(
       Uri.https(
-        'jsonplaceholder.typicode.com',
-        '/posts',
+        AppStrings.baseUrl,
+        PostsConstants.postsText,
         <String, String>{
-          '_start': '$startIndex',
-          '_limit': '${PostsConstants.postLimit}'
+          PostsConstants.startText: '$startIndex',
+          PostsConstants.limitText: '${PostsConstants.postLimit}'
         },
       ),
     );
@@ -28,6 +29,6 @@ class PostServices{
         );
       }).toList();
     }
-    throw Exception('Error');
+    throw Exception(AppStrings.errorText);
   }
 }

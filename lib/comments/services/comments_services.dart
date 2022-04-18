@@ -1,17 +1,19 @@
 import 'dart:convert';
 
+import 'package:infinity_post_page/comments/constants/comments_strings.dart';
 import 'package:infinity_post_page/comments/models/comments_model.dart';
 import 'package:http/http.dart' as http;
+import 'package:infinity_post_page/constants/app_strings.dart';
 
 class CommentServices{
   final http.Client httpClient = http.Client();
   Future<List<CommentModel>> getComments(int postId) async {
     final response = await httpClient.get(
       Uri.https(
-        'jsonplaceholder.typicode.com',
-        '/comments',
+        AppStrings.baseUrl,
+        CommentsConstants.commentsText,
         <String, String>{
-          'postId': '$postId',
+          CommentsConstants.postIdText: '$postId',
         },
       ),
     );
@@ -27,6 +29,6 @@ class CommentServices{
         );
       }).toList();
     }
-    throw Exception('Error');
+    throw Exception(AppStrings.errorText);
   }
 }

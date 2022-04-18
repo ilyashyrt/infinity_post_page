@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:infinity_post_page/comments/view/comments_screen.dart';
 import 'package:infinity_post_page/posts/bloc/post_bloc.dart';
+import 'package:infinity_post_page/posts/constants/posts_constants.dart';
 import 'package:infinity_post_page/posts/widgets/custom_loader.dart';
 import 'package:infinity_post_page/posts/widgets/post_list_item.dart';
 
@@ -27,10 +28,10 @@ class _PostsListState extends State<PostsList> {
       builder: (context, state) {
         switch (state.status) {
           case PostStatus.error:
-            return const Center(child: Text('failed to fetch posts'));
+            return const Center(child: Text(PostsConstants.failedText));
           case PostStatus.success:
             if (state.posts.isEmpty) {
-              return const Center(child: Text('no posts'));
+              return const Center(child: Text(PostsConstants.noPostsText));
             }
             return ListView.separated(
               separatorBuilder: (context, index) {
