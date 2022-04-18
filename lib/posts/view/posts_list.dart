@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:infinity_post_page/comments/view/comments_screen.dart';
 import 'package:infinity_post_page/posts/bloc/post_bloc.dart';
+import 'package:infinity_post_page/posts/widgets/custom_loader.dart';
 import 'package:infinity_post_page/posts/widgets/post_list_item.dart';
 
 class PostsList extends StatefulWidget {
@@ -15,10 +17,10 @@ class _PostsListState extends State<PostsList> {
 
   @override
   void initState() {
-    
     super.initState();
     scrollController.addListener(onScroll);
   }
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<PostBloc, PostState>(
@@ -30,15 +32,31 @@ class _PostsListState extends State<PostsList> {
             if (state.posts.isEmpty) {
               return const Center(child: Text('no posts'));
             }
-            return ListView.builder(
+            return ListView.separated(
+              separatorBuilder: (context, index) {
+                return const Divider(
+                  color: Colors.white,
+                );
+              },
               itemBuilder: (BuildContext context, int index) {
                 return index >= state.posts.length
-                    ? const CircularProgressIndicator()
-                    : PostListItem(post: state.posts[index],onTap: (){print(index);},);
+                    ? const CustomLoader()
+                    : PostListItem(
+                        post: state.posts[index],
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => CommentsScreen(
+                                        postModel: state.posts,
+                                        index: index,
+                                        postId: state.posts[index].id,
+                                      )));
+                        },
+                      );
               },
-              itemCount: state.hasMax
-                  ? state.posts.length
-                  : state.posts.length + 1,
+              itemCount:
+                  state.hasMax ? state.posts.length : state.posts.length + 1,
               controller: scrollController,
             );
           default:

@@ -1,27 +1,19 @@
-class CommentsModel {
-  int? postId;
-  int? id;
-  String? name;
-  String? email;
-  String? body;
+import 'package:equatable/equatable.dart';
 
-  CommentsModel({this.postId, this.id, this.name, this.email, this.body});
+class CommentModel extends Equatable {
+  const CommentModel(
+      {required this.postId,
+      required this.id,
+      required this.name,
+      required this.email,
+      required this.body});
 
-  CommentsModel.fromJson(Map<String, dynamic> json) {
-    postId = json['postId'];
-    id = json['id'];
-    name = json['name'];
-    email = json['email'];
-    body = json['body'];
-  }
+  final int postId;
+  final int id;
+  final String name;
+  final String email;
+  final String body;
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['postId'] = postId;
-    data['id'] = id;
-    data['name'] = name;
-    data['email'] = email;
-    data['body'] = body;
-    return data;
-  }
+  @override
+  List<Object> get props => [postId, id, name, email, body];
 }
