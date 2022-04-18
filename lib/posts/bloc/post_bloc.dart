@@ -2,7 +2,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:infinity_post_page/constants/app_strings.dart';
-import 'package:infinity_post_page/posts/constants/posts_constants.dart';
 import 'package:infinity_post_page/posts/models/posts_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:infinity_post_page/posts/services/posts_services.dart';

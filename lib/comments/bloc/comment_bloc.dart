@@ -5,7 +5,6 @@ import 'package:infinity_post_page/comments/models/comments_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:infinity_post_page/comments/services/comments_services.dart';
 import 'package:infinity_post_page/constants/app_strings.dart';
-import 'package:infinity_post_page/posts/constants/posts_constants.dart';
 import 'package:stream_transform/stream_transform.dart';
 
 part 'comment_event.dart';

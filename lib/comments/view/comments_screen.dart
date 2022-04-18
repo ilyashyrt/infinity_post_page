@@ -48,10 +48,6 @@ class _CommentsScreenState extends State<CommentsScreen> {
             ),
           ],
         ),
-        /*child: Column(children: [
-          
-          
-        ]),*/
       ),
     );
   }

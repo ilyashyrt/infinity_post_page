@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:infinity_post_page/posts/constants/posts_textstyles.dart';
 import 'package:infinity_post_page/posts/models/posts_model.dart';
 import 'package:infinity_post_page/widgets/custom_circle_avatar.dart';
